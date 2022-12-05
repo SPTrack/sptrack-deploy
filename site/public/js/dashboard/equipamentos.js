@@ -5,6 +5,14 @@ var idEquipamento;
 var idNovaMaquina;
 var idSala = 0;
 
+if(window.location.search.split('?')[1]){
+    console.log(idEquipamento)
+    hide(1);
+}
+// x = window.location.search.split('?idEquipamento')[1]
+// console.log(x)
+// console.log('a')
+
 window.onload = () => {
     const parametrosString = window.location.search;
     const parametros = new URLSearchParams(parametrosString);
@@ -14,28 +22,50 @@ window.onload = () => {
     listarDadosMaquina();
     listarMaquinas();
     getSalas();
+    historico();
 };
 
 function hide(mode){
     if(mode == 0){
         hideCadastrar.style.display = 'block';
         hideEditar.style.display = 'none';
+        hideHistorico.style.display = 'none';
         cadButton.style.backgroundColor = 'black';
         editButton.style.backgroundColor = '#858796';
         cadButton.style.border = '1px solid black';
         editButton.style.border = '1px solid #858796';
         cadButton.style.color = 'white';
         editButton.style.color = 'black';
-    }else{
+        histButton.style.color = 'black';
+        histButton.style.backgroundColor = '#858796';
+    }else if (mode == 1) {
         hideEditar.style.display = 'block';
         hideCadastrar.style.display = 'none';
+        hideHistorico.style.display = 'none';
         editButton.style.backgroundColor = 'black';
         cadButton.style.backgroundColor = '#858796';
         editButton.style.border = '1px solid black';
         cadButton.style.border = '1px solid #858796';
         editButton.style.color = 'white';
         cadButton.style.color = 'black';
+        histButton.style.color = 'black';
+        histButton.style.backgroundColor = '#858796';
     }
+    else if (mode == 2) {
+        hideEditar.style.display = 'none';
+        hideCadastrar.style.display = 'none';
+        hideHistorico.style.display = 'block';
+        histButton.style.backgroundColor = 'black';
+        cadButton.style.backgroundColor = '#858796';
+        editButton.style.border = '1px solid black';
+        cadButton.style.border = '1px solid #858796';
+        histButton.style.color = 'white';
+        cadButton.style.color = 'black';
+        editButton.style.backgroundColor = '#858796';
+        editButton.style.color = 'black';   
+    }
+       
+    
 }
 
 function listarMaquinas() {
@@ -361,6 +391,160 @@ function getSalas(){
                         `<option value='${json[i]['idSala']}'>${json[i]['nome']}</option>`;
                     }
                 }
+            });
+        } else {
+            console.log("Houve um erro ao tentar se comunicar!");
+        
+            resposta.text().then(texto => {
+                console.log(texto)
+            });
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+    })
+}
+
+
+function historico() {
+    fetch("/medidas/historico", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            idInstituicaoServer: JSON.parse(sessionStorage.usuario).fkInstituicao
+        })
+    }).then(function (resposta) {
+        if (resposta.ok) {
+            resposta.json().then(json => {
+                console.log(json);
+                 hist = json.map((object) => object);
+                console.log(hist)
+                for (var contHist = 0; contHist < hist.length; contHist++) {
+                  
+                  
+                  if (hist[contHist].fkSala == 1) {
+                    document.getElementById(
+                        "ul"
+                      ).innerHTML += ` 
+                      <li class="list-group-item">
+                          <div class="row align-items-center no-gutters">
+                              <div class="col me-2">
+                                  <h6 class="mb-0">
+                                      <div id="paiDisps">
+                                       <li id="listgrup" class="list-group-item">
+                  <div class="row align-items-center no-gutters">
+                  <div class="col me-2" >
+                  
+                  <label for="maquinaD0" class="onmouseoverclass"> ${hist[contHist].modelo} foi modificado e esta alocado na SALA 1A - CCO</label><br>
+                  </div></div></li> 
+                  
+                                  </h6>
+                              </div>
+                          </div>
+                      </li>
+                  
+                      
+                  `;
+                  }
+                  if (hist[contHist].fkSala == 2) {
+                    document.getElementById(
+                        "ul"
+                      ).innerHTML += `
+                      <li class="list-group-item">
+                          <div class="row align-items-center no-gutters">
+                              <div class="col me-2">
+                                  <h6 class="mb-0">
+                                      <div id="paiDisps">
+                                       <li id="listgrup" class="list-group-item">
+                  <div class="row align-items-center no-gutters">
+                  <div class="col me-2" >
+                  
+                  <label for="maquinaD0" class="onmouseoverclass"> ${hist[contHist].modelo} foi modificado e esta alocado na SALA 2A - SIS </label><br>
+                  </div></div></li> 
+                  
+                  
+                  
+                  
+                                  </h6>
+                              </div>
+                          </div>
+                      </li>
+                  
+                      
+                  `;
+                  }
+                  if (hist[contHist].fkSala == 3) {
+                    document.getElementById(
+                        "ul"
+                      ).innerHTML += `
+                      <li class="list-group-item">
+                          <div class="row align-items-center no-gutters">
+                              <div class="col me-2">
+                                  <h6 class="mb-0">
+                                      <div id="paiDisps">
+                                       <li id="listgrup" class="list-group-item">
+                  <div class="row align-items-center no-gutters">
+                  <div class="col me-2" >
+                  
+                  <label for="maquinaD0" class="onmouseoverclass"> ${hist[contHist].modelo} foi modificado e esta alocado na SALA 3A - ADS</label><br>
+                  </div></div></li> 
+                                  </h6>
+                              </div>
+                          </div>
+                      </li>
+                  `;
+                  }
+
+                  if (hist[contHist].fkSala == 4) {
+                    document.getElementById(
+                        "ul"
+                      ).innerHTML += `
+                      <li class="list-group-item">
+                          <div class="row align-items-center no-gutters">
+                              <div class="col me-2">
+                                  <h6 class="mb-0">
+                                      <div id="paiDisps">
+                                       <li id="listgrup" class="list-group-item">
+                  <div class="row align-items-center no-gutters">
+                  <div class="col me-2" >
+                  
+                  <label for="maquinaD0" class="onmouseoverclass"> ${hist[contHist].modelo} foi modificado e esta alocado na SALA 4A - ADS</label><br>
+                  </div></div></li> 
+                                  </h6>
+                              </div>
+                          </div>
+                      </li>
+                  `;
+                  }
+                
+                  if (hist[contHist].fkSala == 5) {
+                    document.getElementById(
+                        "ul"
+                      ).innerHTML += `
+                      <li class="list-group-item">
+                          <div class="row align-items-center no-gutters">
+                              <div class="col me-2">
+                                  <h6 class="mb-0">
+                                      <div id="paiDisps">
+                                       <li id="listgrup" class="list-group-item">
+                  <div class="row align-items-center no-gutters">
+                  <div class="col me-2" >
+                  
+                  <label for="maquinaD0" class="onmouseoverclass"> ${hist[contHist].modelo} foi modificado e esta alocado na SALA 6A - ADS</label><br>
+                  </div></div></li> 
+                                  </h6>
+                              </div>
+                          </div>
+                      </li>
+                  `;
+                  }
+                    
+                    
+                   
+                    
+                }
+       
             });
         } else {
             console.log("Houve um erro ao tentar se comunicar!");

@@ -7,7 +7,6 @@
 </script>
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <script src="../../js/funcoes.js"></script>
@@ -20,6 +19,7 @@
     <link rel="stylesheet" href="../../bootstrap/fonts/fontawesome-all.min.css">
     <link rel="icon" type="image/x-icon" href="../../assets/img/favicon.ico">
     <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/swal.css">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
@@ -44,6 +44,9 @@
                     <li class="nav-item"><a class="nav-link" href="../tarefas/"><i class="far fa-clock"></i><span>Tarefas</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="../chamados/"><i class="fas fa-info-circle"></i><span>Chamados</span></a></li>
                     <li class="nav-item"><a class="nav-link active" href="../processos/"><i class="fas fa-cog"></i><span>Processos</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="../funcionarios/"><i
+                        class="fas fa-user"></i><span>Funcionários</span></a></li>
+
 
                 </ul>
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0"
@@ -76,95 +79,12 @@
                                         <!--<span class="badge bg-danger badge-counter">3+</span>--><i
                                             class="fas fa-bell fa-fw"></i>
                                     </a>
-                                    <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in">
-                                        <h6 class="dropdown-header">alerts center</h6><a
-                                            class="dropdown-item d-flex align-items-center" href="#">
-                                            <div class="me-3">
-                                                <div class="bg-primary icon-circle"><i
-                                                        class="fas fa-file-alt text-white"></i></div>
-                                            </div>
-                                            <div><span class="small text-gray-500">December 12, 2019</span>
-                                                <p>A new monthly report is ready to download!</p>
-                                            </div>
-                                        </a><a class="dropdown-item d-flex align-items-center" href="#">
-                                            <div class="me-3">
-                                                <div class="bg-success icon-circle"><i
-                                                        class="fas fa-donate text-white"></i></div>
-                                            </div>
-                                            <div><span class="small text-gray-500">December 7, 2019</span>
-                                                <p>$290.29 has been deposited into your account!</p>
-                                            </div>
-                                        </a><a class="dropdown-item d-flex align-items-center" href="#">
-                                            <div class="me-3">
-                                                <div class="bg-warning icon-circle"><i
-                                                        class="fas fa-exclamation-triangle text-white"></i></div>
-                                            </div>
-                                            <div><span class="small text-gray-500">December 2, 2019</span>
-                                                <p>Spending Alert: We've noticed unusually high spending for your
-                                                    account.</p>
-                                            </div>
-                                        </a><a class="dropdown-item text-center small text-gray-500" href="#">Show All
-                                            Alerts</a>
+                                    <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in" id="paiNotificacoes">
+                                        <h6 class="dropdown-header" style="background-color: black;">notificacoes</h6>
                                     </div>
                                 </div>
                             </li>
-                            <li class="nav-item dropdown no-arrow mx-1">
-                                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link"
-                                        aria-expanded="false" data-bs-toggle="dropdown" href="#">
-                                        <!--<span class="badge bg-danger badge-counter">7</span>--><i
-                                            class="fas fa-envelope fa-fw"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in">
-                                        <h6 class="dropdown-header">alerts center</h6><a
-                                            class="dropdown-item d-flex align-items-center" href="#">
-                                            <div class="dropdown-list-image me-3"><img class="rounded-circle"
-                                                    src="../../bootstrap/img/avatars/avatar4.jpeg">
-                                                <div class="bg-success status-indicator"></div>
-                                            </div>
-                                            <div class="fw-bold">
-                                                <div class="text-truncate"><span>Hi there! I am wondering if you can
-                                                        help me with a problem I've been having.</span></div>
-                                                <p class="small text-gray-500 mb-0">Emily Fowler - 58m</p>
-                                            </div>
-                                        </a><a class="dropdown-item d-flex align-items-center" href="#">
-                                            <div class="dropdown-list-image me-3"><img class="rounded-circle"
-                                                    src="../../bootstrap/img/avatars/avatar2.jpeg">
-                                                <div class="status-indicator"></div>
-                                            </div>
-                                            <div class="fw-bold">
-                                                <div class="text-truncate"><span>I have the photos that you ordered last
-                                                        month!</span></div>
-                                                <p class="small text-gray-500 mb-0">Jae Chun - 1d</p>
-                                            </div>
-                                        </a><a class="dropdown-item d-flex align-items-center" href="#">
-                                            <div class="dropdown-list-image me-3"><img class="rounded-circle"
-                                                    src="../../bootstrap/img/avatars/avatar3.jpeg">
-                                                <div class="bg-warning status-indicator"></div>
-                                            </div>
-                                            <div class="fw-bold">
-                                                <div class="text-truncate"><span>Last month's report looks great, I am
-                                                        very happy with the progress so far, keep up the good
-                                                        work!</span></div>
-                                                <p class="small text-gray-500 mb-0">Morgan Alvarez - 2d</p>
-                                            </div>
-                                        </a><a class="dropdown-item d-flex align-items-center" href="#">
-                                            <div class="dropdown-list-image me-3"><img class="rounded-circle"
-                                                    src="../../bootstrap/img/avatars/avatar5.jpeg">
-                                                <div class="bg-success status-indicator"></div>
-                                            </div>
-                                            <div class="fw-bold">
-                                                <div class="text-truncate"><span>Am I a good boy? The reason I ask is
-                                                        because someone told me that people say this to all dogs, even
-                                                        if they aren't good...</span></div>
-                                                <p class="small text-gray-500 mb-0">Chicken the Dog · 2w</p>
-                                            </div>
-                                        </a><a class="dropdown-item text-center small text-gray-500" href="#">Show All
-                                            Alerts</a>
-                                    </div>
-                                </div>
-                                <div class="shadow dropdown-list dropdown-menu dropdown-menu-end"
-                                    aria-labelledby="alertsDropdown"></div>
-                            </li>
+                            
                             <div class="d-none d-sm-block topbar-divider"></div>
                             <li class="nav-item dropdown no-arrow">
                                 <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span class="d-none d-lg-inline me-2 text-gray-600 small" id="span_usuario">Usuário</span><img class="border rounded-circle img-profile" src="../../bootstrap/img/avatars/avatar1.png"></a>
@@ -213,7 +133,7 @@
                                 <div class="col-lg-12 offset-lg-3">
                                     <div class="card shadow mb-3">
                                         <div class="card-header py-3">
-                                            <b style="color: Black;">Lista de Processos</b>
+                                            <b style="color: Black; " id="titulo">Lista de Processos</b>
                                         </div>
                                         <div class="card-body" >
                                             <form id="listar">
@@ -221,38 +141,101 @@
                                                     <div class="col" style="overflow: scroll;width: 215px;height: 181px;">
                                                         <div class="mb-3"><label class="form-label" for="username"><strong>White List</strong></label></div>
                                                         <div class="mb-3">
-                                                <table class="table my-0" id="dataTable">
-                                    </thead>
-                                    <tbody>
-                                        <tr ondragstart="dragStart(event)" draggable="true">
-                                            <td>$162,700</td>
-                                        </tr>
-                                        <tr>
-                                            <td>$1,200,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>$86,000</td>
-                                        </tr></tbody></table>
+                                                <table class="table my-0" >
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Tarefa</th>
+                                                            <th>Sistema Operacional</th>
+                                                        </tr>
+                                                    </thead>
+                                    <tbody id="printarProc1">
+                                        </tbody></table>
                                                         </div>
                                                     </div>
-                                                    <div class="col" ondrop="drop(event)" ondragover="allowDrop(event)" style="overflow: scroll;width: 215px;height: 181px; padding-left: 30px;">
+                                                    <div class="col"  style="overflow: scroll;width: 215px;height: 181px; padding-left: 30px;">
                                                         <div class="mb-3"><label class="form-label" for="email"><strong>Black List</strong></label></div>
                                                         <div class="mb-3">
-                                                            <table class="table my-0" id="dataTable">
-                                                                <tbody>
+                                                            <table class="table my-0" >
+                                                                <thead>
                                                                     <tr>
-                                                                        <td>$161,700</td>
+                                                                        <th>Tarefa</th>
+                                                                        <th>Sistema Operacional</th>
                                                                     </tr>
-                                                                    <tr>
-                                                                        <td>$1,200,000</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>$86,000</td>
-                                                                    </tr></tbody></table>                                                        
+                                                                </thead>
+                                                                <tbody id="printarProc2">
+                                                                  
+                                                                </tbody></table>                                                        
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </form><button class="btn btn-primary btn-sm" type="submit" style="padding-right: 13px;background-color: Black;" onclick="cadastro()">Cadastrar</button>
+                                                
+                                            </form>
+                                    <!--Inicio cadastro-->
+
+                                            <div id="novo" style="display: none;">
+                                                
+                                                <div id="tipos" class="dataTables_length" aria-controls="dataTable"><label class="form-label">Tipo de processo
+                                                <select class="d-inline-block form-select form-select-sm" id="tipo">
+                                                    <option value="---">---</option>
+                                                    <option value="whitelist">white list</option>
+                                                    <option value="blacklist">black list</option>
+                                                </select>&nbsp;</label></div>
+                                                <div class="col-md-6">
+                                                    <div id="tipos" class="dataTables_length" aria-controls="dataTable"><label class="form-label">Nome do Processo</label></div>
+                                                    <div class="text-md-end dataTables_filter" id="dataTable_filter" style="padding-right: 70%;"><label class="form-label">
+                                                        <input type="text" class="form-control form-control-sm" style="width: 200px;" aria-controls="dataTable" placeholder="nome" id="nameP"></label></div>
+                                                </div><br>
+                                                <div class="col-md-6">
+                                                    <div id="tipos" class="dataTables_length" aria-controls="dataTable"><label class="form-label">Sistema Operacional</label></div>
+                                                    <div class="text-md-end dataTables_filter" id="dataTable_filter" style="padding-right: 70%;"><label class="form-label"><input type="text" class="form-control form-control-sm" aria-controls="dataTable" placeholder="SO" id="sisop"></label></div>
+                                                </div>
+                                    </div>
+
+                                    <div id="trocaT" style="display: none;">
+                                        <div class="col-md-6">
+                                            <div id="tipos" class="dataTables_length" aria-controls="dataTable"><label class="form-label">Sistema Operacional</label></div>
+                                            <div class="text-md-end dataTables_filter" id="dataTable_filter" style="padding-right: 70%;"><label class="form-label">
+                                                <input type="text" class="form-control form-control-sm" aria-controls="dataTable" placeholder="SO" id="soT"></label></div>
+                                        </div>        
+                                        <br>
+                                        <div class="col-md-6">
+                                            <div id="tipos" class="dataTables_length" aria-controls="dataTable"><label class="form-label">Nome do Processo</label></div>
+                                            <div class="text-md-end dataTables_filter" id="dataTable_filter" style="padding-right: 70%;" ><label class="form-label">
+                                                <input type="text"  class="form-control form-control-sm" style="width: 200px;" aria-controls="dataTable" placeholder="nome" id="nameT"></label></div>
+                                        </div><br>
+                                                <div id="tipos" class="dataTables_length" aria-controls="dataTable"><label class="form-label">Tipo de processo
+                                                <select class="d-inline-block form-select form-select-sm" id="tipoT">
+                                                    <option value="whitelist">white list</option>
+                                                    <option value="blacklist">black list</option>
+                                                </select>&nbsp;</label></div>
+                                                <input type="text" id="idP" style="display: none;">
+                                                
+                                                
+                                    </div>
+
+                                    <div id="mortos" style="display: none;">
+                                        <div class="col" style="overflow: scroll;width: 700px;height: 181px;padding-left: 10px;">
+                                        <table class="table my-0" id="dataTable" >
+                                            <thead>
+                                                <tr>
+                                                    <th>processo</th>
+                                                    <th>horário finalizado</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="printarMortos">
+                                            </tbody></table>
+                                    </div>
+                                </div>
+                                    <br>
+                                    <button class="btn btn-primary btn-sm" type="submit" style="padding-right: 13px;background-color: Black;" onclick="cadastro1()" id="cad1">Cadastrar</button>
+                                    <button class="btn btn-primary btn-sm" type="submit" style="padding-right: 13px;background-color: Black;display: none;" onclick="cadastro2()" id="cad2">Cadastrar</button>
+                                    <button class="btn btn-primary btn-sm" type="submit" style="background-color: Black;margin-left: 2px;" onclick="morto()" id="cad3">Processos mortos</button>
+                                    <button class="btn btn-primary btn-sm" type="submit" style="background-color: Black;margin-left: 2px;display: none;" onclick="voltar()" id="cad4">Listar Processos</button>
+                                    <button class="btn btn-primary btn-sm" type="submit" style="background-color: Black;margin-left: 2px;display: none;" onclick="atualizaLista()" id="cad5">Trocar</button>
+                                    
+
+                                    <!--Fim cadastro-->
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -261,7 +244,7 @@
                     </div>
                 </div>
             </div>
-            <footer class="bg-white sticky-footer">
+            <footer class="bg-white sticky-footer" style="position: absolute;bottom:0;left: 50%;">
                 <div class="container my-auto">
                     <div class="text-center my-auto copyright"><span>Copyright © SPTrack 2022</span></div>
                 </div>
@@ -278,4 +261,6 @@
 
 <script>
     verifyNav();
+    verificarAcesso(JSON.parse(sessionStorage.usuario).nivelAcesso, 2);
+    // notificacao();
 </script>

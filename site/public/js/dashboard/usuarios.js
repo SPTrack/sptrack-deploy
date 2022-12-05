@@ -1,3 +1,5 @@
+span_usuario.innerHTML = JSON.parse(sessionStorage.usuario).nome;
+
 function cadastrar() {
     fetch("/usuarios/cadastrar", {
         method: "POST",
@@ -7,13 +9,13 @@ function cadastrar() {
        
         body: JSON.stringify({
             idInstituicaoServer: JSON.parse(sessionStorage.usuario).fkInstituicao,
+            fkGestorServer: JSON.parse(sessionStorage.usuario).fkGestor,
             nomeServer: nome.value,
             emailServer: email.value, 
             senhaServer: senha.value,
             tipoUsuarioServer: tipoUsuario.value,
             nivelAcessoServer: nivelAcesso.value,
-            fkGestorServer: fkGestor.value,
-            idInstituicaoServer: idInstituicaoServer,
+            // fkGestorServer: fkGestor,
         })
     }).then(function (resposta) {
         if (resposta.ok) {

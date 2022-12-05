@@ -437,6 +437,8 @@ function plotGrafico(){
                       }).then((result) => {
                         if (!result.isConfirmed) {
                             window.location = window.location.origin + '/dashboard/tarefas';
+                        }else{
+                            verificarEmpty();
                         }
                       })
                 }
@@ -704,7 +706,8 @@ function verificarEmpty(){
         qtd_span.innerHTML = "0%";
         span_status.innerHTML = "Dados Insuficientes";
         maquinasOkay_span.innerHTML = "0%";
-        progMaquinasOkay.style.width = "0%";
+        // progMaquinasOkay.style.width = "0% !important";
+        progMaquinasOkay.remove();
         cpuIcon.style.color = '#858796';
         ramIcon.style.color = '#858796';
         icoStatus.style.color = '#858796';

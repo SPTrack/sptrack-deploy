@@ -57,3 +57,65 @@ function verifyNav(){
         localStorage.setItem("mode", "aberto");
     }
 }
+
+function verificarAcesso(nivelAcesso, nivelPagina) {
+    console.log(nivelAcesso)
+    console.log(nivelPagina)
+
+    if (nivelAcesso < nivelPagina || nivelAcesso == null || nivelAcesso == undefined) {
+        Swal.fire({
+            title: 'Erro de Acesso',
+            text: "Você não tem permissão para acessar essa página.",
+            icon: 'error',
+            confirmButtonColor: '#000000',
+            confirmButtonText: 'Ok'
+          }).then(() => 
+              window.location.href = "../index.html"
+          )
+        
+        
+
+    }
+}
+
+function notificacoes(){
+    fetch("/instituicoes/notificacoes", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            idInstituicaoServer: JSON.parse(sessionStorage.usuario).fkInstituicao
+        })
+    }).then(function (resposta) {
+        if (resposta.ok) {
+            resposta.json().then(json => {
+                console.log(json)
+                for (let i = 0; i < json.length; i++) {
+                    data = new Date(json[i]['dataChamado'])
+                    vetorData = json[i]['dataChamado'].split('T')
+                    horario = vetorData[1].slice(0,5)
+                    paiNotificacoes.innerHTML += `<a
+                class="dropdown-item d-flex align-items-center" href="#">
+                <div class="me-3">
+                    <div class="icon-circle" style="background: black;"><i
+                            class="fas fa-file-alt text-white"></i></div>
+                </div>
+                <div><span class="small text-gray-500">${data.toLocaleDateString('pt-PT')} ${horario}</span>
+                    <p>A máquina de patrimonio ${json[i]['patrimonio']} está com ${json[i]['titulo']} na sala ${json[i]['sala']}</p>
+                </div>
+            </a>`
+                }
+            });
+        } else {
+            console.log("Houve um erro ao tentar se comunicar!");
+
+            resposta.text().then(texto => {
+                console.log(texto)
+            });
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+    });
+}
+notificacoes()

@@ -93,6 +93,17 @@ CREATE TABLE locacao(
     PRIMARY KEY (fkEquipamento, fkSala, dtEstadia)
 ) AUTO_INCREMENT = 500;
 
+CREATE TABLE historico(
+	fkEquipamento INT NOT NULL,
+    FOREIGN KEY (fkEquipamento) REFERENCES equipamento(idEquipamento),
+    
+    fkSala INT NOT NULL,
+    FOREIGN KEY (fkSala) REFERENCES sala(idSala),
+    
+    dtRegistro DATETIME NOT NULL,
+    PRIMARY KEY (fkEquipamento, fkSala, dtRegistro)
+);
+
 CREATE TABLE manutencao(
 	idManutencao INT PRIMARY KEY AUTO_INCREMENT,
     dtInicio DATETIME NOT NULL,
@@ -135,12 +146,12 @@ CREATE TABLE infoChamados(
     quantidadeChamadosAtendimento INT NOT NULL,
     quantidadeChamadosEscalar INT NOT NULL,
     quantidadeChamadosConcluidos INT NOT NULL,
-    quantidadeChamadosArquivado INT NOT NULL,
+    quantidadeChamadosAbertos INT NOT NULL,
+    quantidadeChamadosArquivados INT NOT NULL,
     fkInstituicao INT,
     FOREIGN KEY (fkInstituicao) REFERENCES instituicao (idInstituicao)
 ) AUTO_INCREMENT = 3000;
 
-UPDATE infoChamados SET quantidadeChamados = {quantidadeChamados}, quantidadeChamadosTriagem = {quantidadeChamadosTriagem}, quantidadeChamadosAtendimento = {quantidadeChamadosAtendimento}, quantidadeChamadosEscalar = {quantidadeChamadosEscalar}, quantidadeChamadosConcluidos = {quantidadeChamadosConcluidos}, quantidadeChamadosArquivados = {quantidadeChamadosArquivados}, WHERE idInfo = 1;
 
 CREATE TABLE tarefa(
     idTarefa INT PRIMARY KEY AUTO_INCREMENT,
@@ -205,7 +216,18 @@ CREATE TABLE chamado(
 	
 	FOREIGN KEY (fkEquipamento) REFERENCES equipamento (idEquipamento)
 ) AUTO_INCREMENT = 2000000;
+create table processos(
+	idLeitura int primary key auto_increment,
+	so varchar(15),
+	arquivos varchar(45),
+	tipoProcesso char(9)
+	)auto_increment=1;
 
+create table processosMortos(
+	id int primary key auto_increment,
+	nome varchar(45),
+	horas datetime
+	)auto_increment=1;
 CREATE VIEW `vw_medidasInstituicao` AS
 SELECT medida.idMedida, componente.tipo, componente.unidadeMedida, medida.valor, instituicao.idInstituicao, medida.dataRegistro AS dataRegistro
 FROM instituicao JOIN equipamento ON equipamento.fkInstituicao = instituicao.idInstituicao 
@@ -347,4 +369,4 @@ INSERT INTO estadoDeUso VALUES(NULL, 1, 4, 1, 0, '2022-11-23 04:29:11', 1000);
 INSERT INTO estadoDeUso VALUES(NULL, 1, 4, 1, 0, '2022-11-24 04:29:11', 1000);
 INSERT INTO estadoDeUso VALUES(NULL, 1, 4, 1, 0, '2022-11-25 04:29:11', 1000);
 
-INSERT INTO infoChamados VALUES(1,0,0,0,0,0,0,1000); 
+INSERT INTO infoChamados VALUES(1,0,0,0,0,0,0,0,1000); 
