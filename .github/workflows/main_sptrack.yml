@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'SPTRACK'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_F5E0B37CB8DA42C593C4BE27DE0BA43D }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BF0CC6F8856842938FED0836E2E80F1B }}
           package: .
